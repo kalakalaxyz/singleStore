@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/balance/balance",
+    "pages/evaluate/evaluate",
+    "pages/order/order",
+    "pages/orderList/orderList",
+    "pages/mine/mine",
+    "pages/address/address",
+    "pages/addressList/addressList",
+    "pages/orderAgain/orderAgain"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "美滋滋",
+    "navigationBarTextStyle":"black"
+  }
+}

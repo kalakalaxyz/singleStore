@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="flex_center">
+    <text>亲，感谢您的评价！</text>
+  </view>
+  <view class="flex_center">
+    <text>欢迎再次光临！</text>
+  </view>
+  <view class="w750 p20">
+    <view class="ptb20 flex_center1">
+      <text>配送：</text>
+      <image src="{{'../../images/star'+(index <= distributionNum?'1.png':'0.png')}}" wx:for="{{[0,1,2,3,4]}}" data-index="{{index}}"  wx:key="peisong" bindtap="distribution" class="wh50"></image>
+    </view>
+    <view class="ptb20 flex_center1">
+      <text>口味：</text>
+      <image src="{{'../../images/star'+(index <= tasteNum?'1.png':'0.png')}}" wx:for="{{[0,1,2,3,4]}}" data-index="{{index}}"  wx:key="peisong" bindtap="taste" class="wh50"></image>
+    </view>
+    <view class="ptb20 flex_center1">
+      <text>包装：</text>
+      <image src="{{'../../images/star'+(index <= packNum?'1.png':'0.png')}}" wx:for="{{[0,1,2,3,4]}}" data-index="{{index}}"  wx:key="peisong" bindtap="pack" class="wh50"></image>
+    </view>
+    <view class="mtb20 p20 beee w670 h150">
+      <textarea bindblur="bindTextAreaBlur" auto-height placeholder="文字评价,最多50字" maxlength="50"/>
+    </view>
+    
+    <view class="flex_row">
+      <view wx:if="{{imgSrc.length>0}}">
+        <image class="wh160 mt10 mr10" mode="aspectFitf" src="{{item}}" wx:for="{{imgSrc}}" wx:key="imgSrc"></image>
+      </view>
+      <view class="wh160 mt10 flex_center flex_column beee" bindtap="imgUpload">
+        <view>
+          <text>{{imgSrc.length > 0?"重新上传": "上传照片"}}</text>
+        </view>
+        <view>
+          <text>最多3张</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="flex_center mtb30">
+    <view class="flex_center sub" bindtap='submit'>
+      <text class="cred">提交</text>
+    </view>
+  </view>
+</view>

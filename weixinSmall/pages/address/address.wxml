@@ -1,0 +1,53 @@
+
+<view class="container ">
+  <view class="p20 flex_row flex_center1 bbeee">
+    <view class="w150">
+      <text>联系人</text>
+    </view>
+    <input  maxlength="4" placeholder="你的姓名" bindinput="inputName" value="{{addr.name}}"/>
+  </view>
+
+  <view class="p20 flex_row flex_center1 bbeee">
+    <view class="w150">
+      <text>电话</text>
+    </view>
+    <input  maxlength="11" placeholder="你的手机号"  bindinput='inputPhone' value="{{addr.phone}}"/>
+  </view>
+
+  <view class="p20 flex_row flex_center1 bbeee">
+    <view class="w150">
+      <text>地址</text>
+    </view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{xiamenAddr}}">
+      <view class="picker">
+        {{xiamenAddr[index]}}
+      </view>
+    </picker>
+    <text class="cred">▽</text>
+  </view>
+  
+  <view class="p20 flex_row flex_center1 bbeee">
+    <view class="w150">
+      <text>详细地址</text>
+    </view>
+    <input  maxlength="30" placeholder="如：望海路xx号之一xx层xx室外卖桌" bindinput='inputDetailAddr' value="{{addr.detailAddr}}"/>
+  </view>
+
+  <view class="p20 flex_row flex_center1 bbeee">
+    <view class="w150">
+      <text>标签</text>
+    </view>
+    <text class="tag {{index == tagIndex? 'active': ''}}" data-index="{{index}}" wx:for="{{tags}}" wx:key="tags" bindtap='chooseTag'>{{item}}</text>
+  </view>
+
+  <!-- <view class="p20 flex_row flex_center1 bbeee">
+    <view class="w150">
+      <text>使用状态</text>
+    </view>
+    <text class="tag {{index == stateIndex? 'active': ''}}" data-index="{{index}}" wx:for="{{states}}" wx:key="states" bindtap='chooseState'>{{item}}</text>
+  </view> -->
+
+  <view class="submit" bindtap='submit'>
+    <text>提交</text>
+  </view>
+</view>

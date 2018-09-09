@@ -1,0 +1,29 @@
+<view class="container ">
+  <view class="cred bggreenyellow center p10 scroll-height"><text>新增完点一下生效</text></view>
+  <scroll-view scroll-y  style="height: {{scrollHeight}}px">
+  <view class="p20 bbeee flex_row {{item.state == 1? 'bred': ''}}" wx:for="{{addressList}}" wx:key="addressList" data-item="{{item}}" data-index="{{index}}" bindtap='stateChange'>
+    <view class="w500">
+      <view>
+        <text class="fw600">{{item.name}}</text> {{item.phone}}
+      </view>
+      <view class="flex_row h100 flex_center1 fs30">
+        <view class="flag">
+          <text>{{tags[item.tag]}}</text>
+        </view>
+        <view><text>{{item.addr+item.detailAddr}}</text></view>
+      </view>
+    </view>
+    <view class="flex_row">
+      <view class="flex_center w100" data-item="{{item}}" bindtap="edit">
+        <text class="p10 bred fs30 cred">编辑</text>
+      </view>
+      <view class="flex_center w100" data-item="{{item}}" data-index="{{index}}" bindtap="del">
+        <text class="p10 bblue fs30 cblue">删除</text>
+      </view>
+    </view>
+  </view>
+  </scroll-view>
+  <view class="fix b0 w750 h100 flex_center bteee cblue btop scroll-height" bindtap="toAddress">
+    <text>新增收货地址</text>
+  </view>
+</view>

@@ -1,0 +1,48 @@
+<view class="container ">
+  <view class='p20'>
+    <view><text class="fs30">订单配送至</text></view>
+    <view><text class='cblue'>{{order.addrId.addr+order.addrId.detailAddr}}</text></view>
+    <view class="fs30"><text>{{order.addrId.name}}(先生/女士)</text> <text>{{order.addrId.phone}}</text></view>
+  </view>
+  <view class='w750 h20 bgeee'></view>
+
+  <view class="p20">
+    <view class="flex_row flex_between">
+      <view><text>送达时间</text></view>
+      <!-- <view><text>尽快送达(13:07送达) ></text></view> -->
+      <picker bindchange="bindPickerChange" value="{{sendTimeIndex}}" range="{{sendTimeArr}}">
+        <view class="picker">
+          {{sendTimeArr[sendTimeIndex]}}
+        </view>
+      </picker>
+    </view>
+    <view class="flex_row flex_between">
+      <view><text>支付方式</text></view>
+      <view><text>微信在线支付</text></view>
+    </view>
+  </view>
+  <view class='w750 h20 bgeee'></view>
+
+  <view class="flex_between bbeee p20" wx:for="{{order.goods}}" wx:key="order.goods">
+    <view><text>{{item.goodsId.name}}</text></view>
+    <view><text>X {{item.num}}</text></view>
+    <view><text>¥{{item.num * item.goodsId.price}}</text></view>
+  </view>
+  <view class="flex_end p20">
+    <view><text class='fs30'>小计</text><text class='cred'>¥{{order.totalMoney}}</text></view>
+  </view>
+  <view class='w750 h20 bgeee'></view>
+
+  <view class="mtb20 p20 beee w670 h150">
+    <textarea bindinput="bindinput" placeholder="备注,最多50字" maxlength="50" style="height:150rpx;"/>
+  </view>
+
+  <view class="fix w750 h100 bg707 b0 cwhite lh100">
+    <view class='rel'>
+      <view class='pl10'><text>¥{{order.totalMoney}}</text></view>
+      <view class="flex_center abs w200 h100 cwhite r0 bggreenyellow t0" bindtap="pay">
+        <text>微信支付</text>
+      </view>
+    </view>
+  </view>
+</view>

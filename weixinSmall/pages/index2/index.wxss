@@ -1,0 +1,13 @@
+.tabber{display: flex;flex-direction: space-between;width:100%;color:blue;}
+.navbar{flex: none;display: flex;background: #fff;}
+.navbar .item{position: relative;flex: auto;text-align: center;line-height: 80rpx;}
+.navbar .item.active{color: #fe4646;}
+.navbar .item.active:after{content: "";display: block;position: absolute;bottom: 0;left: 0;
+right: 0;height: 4rpx;background: #fe4646;}
+.f25{font-size: 25rpx;}
+.f30{font-size: 30rpx;}
+.cfe4{color: #fe4646;}
+
+
+
+

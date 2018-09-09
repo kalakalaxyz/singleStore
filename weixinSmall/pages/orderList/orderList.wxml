@@ -1,0 +1,31 @@
+
+<view class="container">
+  <scroll-view scroll-y  style="height: {{scrollHeight}}px" bindscrolltoupper="orderListRefresh" bindscrolltolower="orderListLoadMore">
+  <view wx:for="{{orderList}}" wx:key="orderList" data-item="{{item}}" bindtap='toOrder'>
+
+    <view class="bbeee p20 fs30 flex_between">
+      <view>
+       <text>{{item.goods[0].goodsId.name}}</text>
+      </view>
+      <view>
+        <text>¥{{item.totalMoney}}</text> 
+      </view>
+      <view>
+       <text style="color:{{item.state=='已送达'? 'red': ''}}">{{item.state}}</text>
+      </view>
+    </view>
+
+    <view class="flex_end p20">
+      <view class="p10 oneMore" data-item="{{item}}" catchtap='toOrderAgain'>
+        <text>再来一单</text>
+      </view>
+      <view class="evaluate" data-item="{{item}}" catchtap='toEvaluate' wx-if="{{item.evaluate != 1 && item.state == '已送达'}}">
+        <text>评价</text>
+      </view>
+    </view>
+
+    <view class="w750 h20 bgeee">
+    </view>
+  </view>
+  </scroll-view>
+</view>

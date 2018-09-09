@@ -1,0 +1,206 @@
+
+<view class="container">
+  <view class="tabber scroll-height">
+    <view bindtap="toOrderList" class="w033 center">
+      <text>{{"<"}}历史订单</text>
+    </view>
+    <view bindtap="toMine" class="w033 center cred fs60">
+       <text>{{sellerRest==0? '': '商家休息'}}</text> 
+      <text> </text>
+    </view>
+    <view bindtap="toMine" class="w033 center">
+      <text>我的{{">"}}</text>
+    </view>
+  </view>
+
+  <view class="navbar scroll-height">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  </view>
+  <!--点餐-->
+  <view hidden="{{currentTab!==0}}">
+    <!--商品列表-->
+    <scroll-view scroll-y  style="height: {{scrollHeight - 42}}px">
+    <view wx:for="{{goods}}" wx:key="{{goods}}" class="row p20">
+        <image src="{{host + item.photo}}" class="wh200"></image>
+        <view class="pl10 w510">
+          <view>
+            <text>{{item.name}}</text>
+          </view>
+          <view>
+            <text class='f25'>{{item.explain}}</text>
+          </view>
+          <view class='f30'>
+            <text>月售{{item.sendNum}}份 </text>
+            <text>总销量{{item.totalNum}}份 </text>
+            <text> 好评率{{item.praise*100}}%</text>
+          </view>
+          <view>
+            <text class='cfe4'>¥{{item.price}}</text>
+            <view class='fr'>
+              <view class="symbols minus" bindtap='minus' data-item="{{item}}"><text>-</text></view>
+              <text>{{item.num}}</text>
+              <view class="symbols plus" style="background: {{item.sellout == 0? '': '#eee'}}" bindtap='plus' data-item="{{item}}"><text>+</text></view>
+            </view>
+          </view>
+        </view>
+    </view>
+    </scroll-view>
+    <!--购物车-->
+    <view class="fix w750 h100 bg707 b0" bindtap='shopcartShow'>
+      <view class='rel'>
+        <!--购物车底部固定部分-->
+        <view class="abs t_20 l20">
+          <view class='rel'>
+            <image src="{{totalNum? shopcartImg: shopcartImg0}}" class="w100 h100" ></image>
+            <view class="abs t_20 l20">
+              <text class="symbols plus fs20" wx:if="{{totalNum}}">{{totalNum}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="abs w200 h100 pt10 l150">
+          <text class="fs30" wx:if="{{!totalNum}}">未选购商品</text>
+          <text class="cwhite" wx:if="{{totalNum}}">¥{{totalMoney}}</text>
+        </view>
+
+        <view class="flex_center abs w200 h100 cwhite r0 {{totalNum? 'bggreenyellow' :''}}" catchtap="{{totalNum?'toBalance':''}}">
+          <text>{{totalNum? '结算' :'¥0起送'}}</text>
+        </view>
+        <!--购物车显示隐藏商品-->
+        <view wx:if="{{totalNum &&shopcartShow}}" class="abs b20 w750" style="background:white;">
+          <view class="h80 w750 bteee bbeee">
+            <view class="flex_center fl w200 h80"><text>已选商品</text></view>
+            <view class="flex_center fr w200 h80" catchtap="clearAll"><text>清空</text></view>
+          </view>
+          <view wx:for="{{shopcartList}}" wx:key="{{shopcartList}}" class="row p20">
+            <view style="width:40%">
+            <text>{{item.name}}</text>
+            </view>
+            <view style="width:20%">
+            <text class='cfe4'>¥{{item.price*item.num}}</text>
+            </view>
+            <view class='fr'>
+              <view class="symbols minus" catchtap='minus' data-item="{{item}}"><text>-</text></view>
+              <text>{{item.num}}</text>
+              <view class="symbols plus" catchtap='plus' data-item="{{item}}"><text>+</text></view>
+             
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!--评价-->
+  <view hidden="{{currentTab!==1}}">
+    <scroll-view scroll-y  style="height: {{scrollHeight}}px" bindscrolltoupper="evaluateRefresh" bindscrolltolower="evaluateLoadMore">
+    <view class="flex_row fs30 mt20 bbeee" wx:for="{{evaluateList}}" wx:for-item="evaluateItem"  wx:key="evaluateList">
+      <view class="flex_center0 w120">
+        <image src="{{evaluateItem.avatarUrl || host + 'public/images/default.png'}}" class="wh100"></image>
+      </view>
+      <view class="w600">
+        <view>
+          <text>{{evaluateItem.wxNum}}</text>
+        </view>
+        <view>
+          <text>配送：</text>
+          <image src="{{'../../images/star'+(index <= evaluateItem.sendStar?'1.png':'0.png')}}" wx:for="{{[0,1,2,3,4]}}" data-index="{{index}}"  wx:key="distribution" class="wh30"></image>
+        </view>
+        <view>
+          <text>口味：</text>
+          <image src="{{'../../images/star'+(index <= evaluateItem.tasteStar?'1.png':'0.png')}}" wx:for="{{[0,1,2,3,4]}}" data-index="{{index}}"  wx:key="taste" class="wh30"></image>
+        </view>
+        <view>
+          <text>包装：</text>
+          <image src="{{'../../images/star'+(index <= evaluateItem.packStar?'1.png':'0.png')}}" wx:for="{{[0,1,2,3,4]}}" data-index="{{index}}"  wx:key="pack" class="wh30"></image>
+        </view>
+        <view>
+          <text>{{evaluateItem.explain}}</text>
+        </view>
+        <image src="{{host + imgItem}}" class="wh150" wx:for="{{evaluateItem.imgs}}" wx:for-item="imgItem" wx:key="imgItem"></image>
+      </view>
+    </view>
+    </scroll-view>
+  </view>
+  
+  <!--商家-->
+  <view hidden="{{currentTab!==2}}">
+    <scroll-view scroll-y  style="height: {{scrollHeight}}px">
+    <view>
+      <image src="{{host+seller.mainImg}}" class="w750 h200"></image>
+    </view>
+    <view>
+      <view class="flex_center fs60">
+        <text>{{seller.storeName}}</text>
+      </view>
+      <view class="flex_center w750 fs30">
+        <text>距离{{seller.distance}}米</text>
+        <text class='ml20'>送达约{{seller.sendTime}}分</text>
+        <text class='ml20'>上月售{{seller.saleNum}}单</text>
+      </view>
+
+      <view class="p20">
+        <view class="fw600 mb20">
+          <text>配送信息</text>
+        </view>
+        <view class="fs30">
+          <text>{{seller.distribute1}}</text>
+        </view>
+        <view>
+          <text>{{seller.distribute2}}</text>
+        </view>
+      </view>
+
+      <view class="p20">
+        <view class="fw600 mb20">
+          <text>店铺实拍</text>
+        </view>
+        <view class="flex_row">
+          <image src="{{host+ item}}" class="wh200 {{index? 'ml20': '' }}" wx:for="{{seller.storeImgs}}" wx:key="{{seller.storeImgs}}"></image>
+        </view>
+      </view>
+
+      <view class="p20">
+        <view class="fw600 mb20">
+          <text>商家信息</text>
+        </view>
+        <view class="flex_between bbeee fs30 h70">
+          <view>
+            <text class='fw600'>商家电话</text>
+          </view>
+          <view>
+            <text>{{seller.phone}}</text>
+          </view>
+        </view>
+        <view class="flex_between bbeee fs30 h70">
+          <view>
+            <text class='fw600'>商家地址</text>
+          </view>
+          <view>
+            <text>{{seller.addr}}</text>
+          </view>
+        </view>
+        <view class="flex_between bbeee fs30 h70">
+          <view>
+            <text class='fw600'>营业时间</text>
+          </view>
+          <view>
+            <text>{{seller.businessTime}}</text>
+          </view>
+        </view>
+        <view class="flex_between bbeee fs30 h70">
+          <view>
+            <text class='fw600'>营业资质</text>
+          </view>
+          <view>
+            <text>↓</text>
+          </view>
+        </view>
+        <view class="flex_row">
+          <image src="{{host+ item}}" class="wh200 {{index? 'ml20': '' }}" wx:for="{{seller.businessImgs}}" wx:key="{{seller.storeImgs}}"></image>
+        </view>
+      </view>
+    </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,4 @@
+
+.tag{width:100rpx;height:50rpx;border:1px solid black;text-align:center;vertical-align:middle;margin-right:20rpx;border-radius:5rpx;}
+.tag.active{border:1px solid blue; color: blue;}
+.submit{width:600rpx;height:100rpx;line-height:100rpx;text-align:center;background:blue;color:white;margin:40rpx auto;border-radius:20rpx;}

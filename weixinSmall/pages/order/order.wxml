@@ -1,0 +1,76 @@
+
+<view class="container ">
+  <view class="p20">
+    <view class="fw600 mb20">
+      <text>订单信息</text>
+    </view>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>订单号</text>
+      </view>
+      <view>
+        <text>{{order._id}}</text>
+      </view>
+    </view>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>下单时间</text>
+      </view>
+      <view>
+        <text>{{order.created}}</text>
+      </view>
+    </view>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>要求送达时间</text>
+      </view>
+      <view>
+        <text>{{order.sendTime}}</text>
+      </view>
+    </view>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>送达时间</text>
+      </view>
+      <view>
+        <text>{{order.arriveTime}}</text>
+      </view>
+    </view>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>订单状态</text>
+      </view>
+      <view>
+        <text class="fs40 fw600 cred">{{order.state}}</text>
+      </view>
+    </view>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>送货地址</text>
+      </view>
+      <view>
+        <text>{{order.addrId.name}} {{order.addrId.phone}} {{order.addrId.addr}}{{order.addrId.detailAddr}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="w750 h20 bgeee"></view>
+
+  <view class="flex_end p20">
+    <view class="p10 oneMore" bindtap='toOrderAgain'>
+      <text>再来一单</text>
+    </view>
+    <view class="evaluate" bindtap='toEvaluate'>
+      <text>评价</text>
+    </view>
+  </view>
+  <view class="w750 h20 bgeee"></view>
+
+  <view class="flex_between bbeee p20" wx:for="{{order.goods}}" wx:key="order.goods">
+    <view><text>{{item.goodsId.name}}</text></view>
+    <view><text>X {{item.num}}</text></view>
+    <view><text>¥{{item.price * item.num}}</text></view>
+  </view>
+  <view class="flex_end p20">
+    <view><text class='fs30'>实付</text><text class='cred'>¥{{order.totalMoney}}</text></view>
+  </view>
+</view>

@@ -1,0 +1,2 @@
+.flag{width:120rpx;border:1px solid;text-align:center;margin-right: 20rpx;}
+.btop{border-top:3px solid greenyellow;}

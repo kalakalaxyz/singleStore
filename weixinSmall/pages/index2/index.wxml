@@ -1,0 +1,5 @@
+
+<view class="container ">
+  <view bindtap='toIndex'><text>首页</text></view>
+
+</view>

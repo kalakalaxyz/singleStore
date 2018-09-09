@@ -1,0 +1,20 @@
+
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse && getUserInfoFail}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:if="{{hasUserInfo}}">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="p20" bindtap='toAddressList'>
+    <view class="flex_between bbeee fs30 h70">
+      <view>
+        <text class='fw600'>收货地址</text>
+      </view>
+      <view>
+        <text>》</text>
+      </view>
+    </view>
+  </view>
+</view>
