@@ -2,8 +2,8 @@ var http = require("http");
 var crypto1 = require("crypto");
 var url = require("url");
 
-var appid = "d50ad8dc088a";//您申请的app key
-var appsecret = "415da3b30e54aa86360b";//您申请的appsecret
+var appid = "123456789012";//您申请的app key
+var appsecret = "12345678901234567890";//您申请的appsecret
 var baseUrl = "www.open.mstching.com"; 
 var utils = {	
 	sendPost:function(action,data,callback){

@@ -8,7 +8,7 @@ export default {
     const(){
     	var data={};
         data.IP= "http://127.0.0.1:80/";
-        // data.IP= "https://www.meizizi.store:443/";
+        // data.IP= "https://www.domain.com:443/";
     	data.IMAGE_URL = data.IP+"/public/img";
         data.BGCOLOR = "#d95235";
     	return data;

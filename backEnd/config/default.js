@@ -14,6 +14,6 @@
   	secret: 'ecp',
     time: 60*5 //5分钟
   },
-  // host: "https://www.meizizi.store:443/",
-  host: "http://192.168.0.100:80/"
+  // host: "https://www.domain.com:443/",
+  host: "http://192.168.0.100:80/" //生成二维码时的host,扫码用的
 };

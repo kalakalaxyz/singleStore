@@ -1,7 +1,7 @@
 //app.js
 App({
   globalData: {
-    // host: "https://www.meizizi.store:443/",
+    // host: "https://www.domain.com:443/",
     host: "http://127.0.0.1:80/",
     userInfo: {},
     tags: ["家", "公司", "学校"],
